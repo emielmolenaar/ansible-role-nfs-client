@@ -1,0 +1,10 @@
+---
+
+nfs_client_packages:
+  - nfs-common
+
+nfs_client_mounts: []
+#  - path: /mnt/some/point
+#    src: server:/share
+#    fstype: nfs
+#    opts: auto,noatime,nolock,bg,nfsvers=4,sec=krb5p,intr,tcp,actimeo=1800
