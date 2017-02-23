@@ -4,11 +4,11 @@
    apt: name="{{ item }}" state=installed update_cache=yes cache_valid_time=86400
    with_items: "{{ nfs_client_packages }}"
 
- - name: Ensure NFS mount points exist as a directory
+ - name: Ensure NFS mount points exist
    file:
-     name: "{{ item.path }}"
+     path: "{{ item.path }}"
      state: directory
-   with_items: nfs_client_mounts
+   with_items: "{{ nfs_client_mounts }}"
 
  - name: Ensure NFS mount points are present and mounted
    mount:
@@ -17,4 +17,4 @@
      fstype: "{{ item.fstype | default('nfs') }}"
      opts: "{{ item.opts | default('auto,noatime,nolock,bg,nfsvers=4,sec=krb5p,intr,tcp,actimeo=1800') }}"
      state: mounted
-   with_items: nfs_client_mounts
+   with_items: "{{ nfs_client_mounts }}"
